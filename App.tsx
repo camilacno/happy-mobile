@@ -9,10 +9,26 @@ import {
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
+import {
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+  Nunito_800ExtraBold,
+} from '@expo-google-fonts/nunito';
 
 import mapMarker from './src/images/mapMarker.png';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <MapView
@@ -76,6 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   calloutText: {
+    fontFamily: 'Nunito_700Bold',
     color: '#0089a5',
     fontSize: 14,
   },
@@ -94,6 +111,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   footerText: {
+    fontFamily: 'Nunito_700Bold',
     color: '#8fa7b3',
   },
   createOrphanageButton: {
